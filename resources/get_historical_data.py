@@ -1,11 +1,11 @@
 from flask import request
 from flask.views import MethodView
 from flask_smorest import Blueprint,abort
-from .mt_methods import copy_rates_from_pos
+from .mt_methods import get_historical_data
 
-blp = Blueprint("copy_rates_from_pos",__name__,description="Processed Data")
+blp = Blueprint("get_historical_data",__name__,description="Raw data")
 
-@blp.route("/copy_rates_from_pos")
+@blp.route("/get_historical_data")
 class Copy_rates_from_pos(MethodView):
     def post(self):
         payload = request.get_json()
@@ -14,24 +14,17 @@ class Copy_rates_from_pos(MethodView):
             "symbol" not in payload or
             "timeframe" not in payload or
             "start_pos" not in payload or
-            "count" not in payload or
-            "multiplier" not in payload or
-            "threshold" not in payload or
-            "closeOnly" not in payload
+            "count" not in payload 
         ):
             abort(
                 400,
                 message="Bad request."
             )
         try:
-            
-            return copy_rates_from_pos(
+            return get_historical_data(
                 payload['symbol'],
                 payload['timeframe'],
                 payload['start_pos'],
-                payload['count'],
-                payload['multiplier'],
-                payload['threshold'],
-                payload['closeOnly'])
+                payload['count'],)
         except Exception as e:
             abort(500,message="ERROR! : "+e)

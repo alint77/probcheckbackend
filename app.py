@@ -2,6 +2,7 @@ from flask import Flask
 from flask_smorest import Api
 from resources.raw_data_endpoints import blp as RawDataBlp 
 from resources.symbols import blp as SymbolsBlp 
+from resources.get_historical_data import blp as historicalDataBlp
 
 app=Flask(__name__)
 
@@ -16,4 +17,5 @@ app.config["OPENAPI_SWAGGER_UI_URL"] = "https://cdn.jsdelivr.net/npm/swagger-ui-
 api = Api(app)
 api.register_blueprint(RawDataBlp)
 api.register_blueprint(SymbolsBlp)
+api.register_blueprint(historicalDataBlp)
 
