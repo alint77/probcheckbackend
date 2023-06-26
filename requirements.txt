@@ -1,0 +1,6 @@
+flask
+flask-smorest
+python-dotenv
+metatrader5
+pandas
+numpy

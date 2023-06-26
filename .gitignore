@@ -1,0 +1,7 @@
+/.venv
+/.vscode
+/Dockerfile
+/FTSE100_M20_201905010120_202206242240.csv
+/metatrade.ipynb
+/PropCheck.ipynb
+/__pycache__
